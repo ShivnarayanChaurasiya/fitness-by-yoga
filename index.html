@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fit Together Community</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --lime: #C8F135;
+  --forest: #1A2E0D;
+  --leaf: #4CAF50;
+  --amber: #F5A623;
+  --clay: #C47F4E;
+  --bg: #0D1A08;
+  --bg2: #111F0B;
+  --bg3: #162410;
+  --surface: #1C2E13;
+  --border: rgba(200,241,53,0.15);
+  --text: #E8F5D0;
+  --muted: #7A9466;
+  --white: #ffffff;
+  --card-bg: #192614;
+  --shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+[data-theme="light"] {
+  --bg: #F4FAE8;
+  --bg2: #EBF5D5;
+  --bg3: #E0EECC;
+  --surface: #FFFFFF;
+  --border: rgba(74,136,50,0.2);
+  --text: #1A2E0D;
+  --muted: #4A6830;
+  --card-bg: #FFFFFF;
+  --shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);transition:background 0.3s,color 0.3s;overflow-x:hidden}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;background:rgba(13,26,8,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:all 0.3s}
+[data-theme="light"] nav{background:rgba(244,250,232,0.9)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--lime);letter-spacing:2px;text-decoration:none}
+.nav-links{display:flex;gap:24px;list-style:none;align-items:center}
+.nav-links a{color:var(--text);text-decoration:none;font-size:14px;font-weight:500;transition:color 0.2s;opacity:0.8}
+.nav-links a:hover{color:var(--lime);opacity:1}
+.nav-right{display:flex;align-items:center;gap:12px}
+.theme-btn{background:var(--surface);border:1px solid var(--border);color:var(--text);width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all 0.2s}
+.theme-btn:hover{background:var(--lime);color:var(--forest)}
+.nav-cta{background:var(--lime);color:var(--forest);border:none;padding:10px 20px;border-radius:24px;font-weight:700;font-size:13px;cursor:pointer;transition:all 0.2s}
+.nav-cta:hover{transform:scale(1.05);box-shadow:0 0 20px rgba(200,241,53,0.4)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{width:24px;height:2px;background:var(--text);display:block;transition:all 0.3s}
+/* HERO */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:80px 24px 40px}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0D1A08 0%,#1A3010 40%,#0D1A08 100%)}
+.hero-bg-img{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80');background-size:cover;background-position:center;opacity:0.25}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,26,8,0.7) 0%,rgba(13,26,8,0.4) 50%,rgba(13,26,8,0.85) 100%)}
+.hero-content{position:relative;z-index:2;max-width:800px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,241,53,0.12);border:1px solid rgba(200,241,53,0.3);color:var(--lime);padding:8px 18px;border-radius:24px;font-size:13px;font-weight:600;margin-bottom:28px;letter-spacing:1px}
+.hero-badge::before{content:'🌿';font-size:14px}
+h1.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,9vw,110px);line-height:0.9;color:var(--white);letter-spacing:3px;margin-bottom:12px}
+h1.hero-title span{color:var(--lime)}
+.hero-sub{font-size:clamp(16px,2.5vw,20px);color:var(--muted);max-width:520px;margin:0 auto 36px;line-height:1.6;font-weight:300}
+[data-theme="light"] .hero-sub{color:#4A6830}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:var(--lime);color:var(--forest);border:none;padding:16px 36px;border-radius:50px;font-weight:700;font-size:15px;cursor:pointer;transition:all 0.3s;text-decoration:none;display:inline-block}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(200,241,53,0.35)}
+.btn-outline{background:transparent;color:var(--lime);border:2px solid var(--lime);padding:14px 34px;border-radius:50px;font-weight:600;font-size:15px;cursor:pointer;transition:all 0.3s;text-decoration:none;display:inline-block}
+.btn-outline:hover{background:var(--lime);color:var(--forest);transform:translateY(-3px)}
+.hero-stats{display:flex;gap:48px;justify-content:center;margin-top:60px;flex-wrap:wrap}
+.hero-stat{text-align:center}
+.hero-stat .num{font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--lime);line-height:1}
+.hero-stat .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:2px;margin-top:4px}
+.scroll-hint{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0.5;animation:bounce 2s infinite}
+.scroll-hint span{font-size:11px;letter-spacing:2px;color:var(--lime)}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+/* SECTIONS */
+section{padding:90px 24px}
+.container{max-width:1160px;margin:0 auto}
+.section-label{font-size:12px;font-weight:700;letter-spacing:3px;color:var(--lime);text-transform:uppercase;margin-bottom:12px}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,60px);letter-spacing:2px;margin-bottom:16px}
+.section-sub{font-size:17px;color:var(--muted);max-width:560px;line-height:1.7}
+.divider{width:60px;height:3px;background:var(--lime);margin:20px 0}
+/* QUOTE BAR */
+.quote-bar{background:var(--lime);padding:28px 24px;text-align:center}
+.quote-bar p{font-family:'Playfair Display',serif;font-size:clamp(18px,3vw,26px);color:var(--forest);font-style:italic;max-width:760px;margin:0 auto}
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:60px}
+.about-img{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/5}
+.about-img img{width:100%;height:100%;object-fit:cover}
+.about-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,8,0.7),transparent)}
+.about-badge{position:absolute;bottom:24px;left:24px;background:var(--lime);color:var(--forest);padding:12px 20px;border-radius:14px;font-weight:700;font-size:14px}
+.about-text{display:flex;flex-direction:column;gap:20px}
+.about-text p{color:var(--muted);line-height:1.8;font-size:16px}
+.about-values{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+.value-card{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:20px;transition:border-color 0.2s}
+.value-card:hover{border-color:var(--lime)}
+.value-card .icon{font-size:28px;margin-bottom:8px}
+.value-card h4{font-weight:700;font-size:14px;margin-bottom:4px}
+.value-card p{font-size:13px;color:var(--muted)}
+/* ACTIVITIES */
+.activities-section{background:var(--bg2)}
+.activity-filter{display:flex;gap:10px;flex-wrap:wrap;margin:32px 0}
+.filter-btn{background:var(--surface);border:1px solid var(--border);color:var(--text);padding:8px 18px;border-radius:24px;font-size:13px;cursor:pointer;transition:all 0.2s;font-weight:500}
+.filter-btn.active,.filter-btn:hover{background:var(--lime);color:var(--forest);border-color:var(--lime)}
+.activity-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.activity-card{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:4/3;cursor:pointer;transition:transform 0.3s}
+.activity-card:hover{transform:scale(1.03)}
+.activity-card img{width:100%;height:100%;object-fit:cover}
+.activity-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.75) 0%,transparent 60%);display:flex;align-items:flex-end;padding:20px}
+.activity-card-info h3{font-weight:700;font-size:18px;color:#fff}
+.activity-card-info p{font-size:13px;color:rgba(255,255,255,0.7);margin-top:4px}
+.activity-tag{position:absolute;top:14px;right:14px;background:var(--lime);color:var(--forest);padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700}
+.upload-area{margin-top:36px;border:2px dashed var(--border);border-radius:18px;padding:40px;text-align:center;cursor:pointer;transition:border-color 0.2s;background:var(--surface)}
+.upload-area:hover{border-color:var(--lime)}
+.upload-icon{font-size:40px;margin-bottom:12px}
+.upload-area h3{font-size:18px;margin-bottom:8px}
+.upload-area p{color:var(--muted);font-size:14px;margin-bottom:20px}
+#file-input{display:none}
+.upload-preview{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;margin-top:24px}
+.preview-item{aspect-ratio:1;border-radius:10px;overflow:hidden;position:relative}
+.preview-item img,.preview-item video{width:100%;height:100%;object-fit:cover}
+/* EXERCISES */
+.exercise-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;margin-top:40px}
+.exercise-card{background:var(--card-bg);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:all 0.3s;cursor:pointer}
+.exercise-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--lime)}
+.exercise-img{aspect-ratio:16/10;overflow:hidden;position:relative}
+.exercise-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s}
+.exercise-card:hover .exercise-img img{transform:scale(1.08)}
+.exercise-category{position:absolute;top:12px;left:12px;background:rgba(0,0,0,0.6);color:var(--lime);padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;backdrop-filter:blur(4px)}
+.exercise-body{padding:20px}
+.exercise-body h3{font-weight:700;font-size:17px;margin-bottom:8px}
+.exercise-meta{display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.meta-tag{font-size:12px;padding:4px 10px;border-radius:12px;font-weight:600}
+.meta-tag.easy{background:rgba(76,175,80,0.15);color:#4CAF50}
+.meta-tag.medium{background:rgba(245,166,35,0.15);color:#F5A623}
+.meta-tag.hard{background:rgba(244,67,54,0.15);color:#F44336}
+.meta-tag.reps{background:rgba(200,241,53,0.1);color:var(--lime)}
+.exercise-benefits{font-size:13px;color:var(--muted);line-height:1.6}
+/* TEAM */
+.team-section{background:var(--bg2)}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:28px;margin-top:48px}
+.team-card{background:var(--card-bg);border:1px solid var(--border);border-radius:22px;overflow:hidden;transition:all 0.3s;text-align:center}
+.team-card:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
+.team-img{aspect-ratio:1;overflow:hidden;position:relative}
+.team-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s}
+.team-card:hover .team-img img{transform:scale(1.08)}
+.team-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6),transparent)}
+.team-body{padding:22px}
+.team-body h3{font-weight:700;font-size:18px;margin-bottom:4px}
+.team-role{color:var(--lime);font-size:13px;font-weight:600;margin-bottom:10px}
+.team-body p{font-size:13px;color:var(--muted);line-height:1.6}
+.team-social{display:flex;gap:10px;justify-content:center;margin-top:16px}
+.social-icon{width:34px;height:34px;border-radius:50%;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;text-decoration:none;transition:all 0.2s}
+.social-icon:hover{background:var(--lime);border-color:var(--lime)}
+/* STORIES */
+.stories-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;margin-top:48px}
+.story-card{background:var(--card-bg);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:all 0.3s}
+.story-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.story-before-after{display:grid;grid-template-columns:1fr 1fr;gap:2px;aspect-ratio:16/9;overflow:hidden;border-radius:14px}
+.story-before-after img{width:100%;height:100%;object-fit:cover}
+.story-body{padding:20px}
+.story-label{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--lime);margin-bottom:8px}
+.story-body h3{font-weight:700;font-size:16px;margin-bottom:8px}
+.story-body p{font-size:13px;color:var(--muted);line-height:1.6;font-style:italic}
+.story-weight{display:inline-flex;align-items:center;gap:8px;background:rgba(200,241,53,0.1);border:1px solid rgba(200,241,53,0.2);padding:6px 14px;border-radius:20px;font-size:12px;color:var(--lime);font-weight:600;margin-top:12px}
+/* EVENTS */
+.events-section{background:var(--bg2)}
+.events-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;margin-top:48px}
+.event-card{background:var(--card-bg);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:all 0.3s;position:relative}
+.event-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--lime)}
+.event-img{aspect-ratio:16/9;overflow:hidden}
+.event-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s}
+.event-card:hover .event-img img{transform:scale(1.08)}
+.event-date-badge{position:absolute;top:16px;left:16px;background:var(--lime);color:var(--forest);padding:8px 14px;border-radius:12px;font-weight:700;font-size:12px;text-align:center}
+.event-body{padding:20px}
+.event-body h3{font-weight:700;font-size:17px;margin-bottom:8px}
+.event-body p{font-size:13px;color:var(--muted);margin-bottom:16px}
+.event-meta{display:flex;gap:16px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.event-meta span{display:flex;align-items:center;gap:4px}
+.event-cta{display:block;margin-top:16px;text-align:center;background:transparent;border:1px solid var(--lime);color:var(--lime);padding:10px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;text-decoration:none}
+.event-cta:hover{background:var(--lime);color:var(--forest)}
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:12px;margin-top:48px}
+.gallery-item{border-radius:14px;overflow:hidden;cursor:pointer;position:relative}
+.gallery-item.wide{grid-column:span 2}
+.gallery-item.tall{grid-row:span 2}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s}
+.gallery-item:hover img{transform:scale(1.08)}
+.gallery-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);transition:background 0.3s;display:flex;align-items:center;justify-content:center}
+.gallery-item:hover .gallery-overlay{background:rgba(200,241,53,0.15)}
+/* JOIN */
+.join-section{background:linear-gradient(135deg,var(--forest) 0%,#0D1A08 100%);position:relative;overflow:hidden}
+.join-section::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:var(--lime);opacity:0.05;border-radius:50%}
+.join-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-top:48px}
+.join-form{display:flex;flex-direction:column;gap:16px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-group{display:flex;flex-direction:column;gap:8px}
+.form-group label{font-size:13px;font-weight:600;color:var(--text);opacity:0.8}
+.form-group input,.form-group select,.form-group textarea{background:rgba(255,255,255,0.06);border:1px solid var(--border);color:var(--text);padding:12px 16px;border-radius:12px;font-family:'Inter',sans-serif;font-size:14px;transition:border-color 0.2s;outline:none}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--lime)}
+.form-group select option{background:#1A2E0D}
+.form-group textarea{resize:vertical;min-height:100px}
+.join-submit{background:var(--lime);color:var(--forest);border:none;padding:16px;border-radius:12px;font-weight:700;font-size:16px;cursor:pointer;transition:all 0.3s;margin-top:8px}
+.join-submit:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(200,241,53,0.3)}
+.join-links{display:flex;flex-direction:column;gap:20px}
+.join-link-card{background:var(--card-bg);border:1px solid var(--border);border-radius:18px;padding:24px;display:flex;align-items:center;gap:18px;text-decoration:none;transition:all 0.3s}
+.join-link-card:hover{border-color:var(--lime);transform:translateX(8px)}
+.join-link-icon{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
+.join-link-icon.whatsapp{background:rgba(37,211,102,0.15)}
+.join-link-icon.instagram{background:rgba(214,41,118,0.15)}
+.join-link-text h3{font-weight:700;font-size:16px;color:var(--text);margin-bottom:4px}
+.join-link-text p{font-size:13px;color:var(--muted)}
+.join-benefits{margin-top:28px;background:rgba(200,241,53,0.05);border:1px solid var(--border);border-radius:16px;padding:24px}
+.join-benefits h3{font-weight:700;margin-bottom:16px;font-size:15px}
+.benefit-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px}
+.benefit-item:last-child{border-bottom:none}
+.benefit-item::before{content:'✓';color:var(--lime);font-weight:700;flex-shrink:0}
+/* CONTACT */
+.contact-section{background:var(--bg2)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:48px;align-items:start}
+.contact-items{display:flex;flex-direction:column;gap:20px}
+.contact-item{display:flex;align-items:flex-start;gap:16px;background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:20px;transition:border-color 0.2s}
+.contact-item:hover{border-color:var(--lime)}
+.contact-icon{width:48px;height:48px;background:rgba(200,241,53,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.contact-info h4{font-weight:700;font-size:14px;margin-bottom:4px}
+.contact-info p,.contact-info a{font-size:14px;color:var(--muted);text-decoration:none;transition:color 0.2s}
+.contact-info a:hover{color:var(--lime)}
+.map-placeholder{background:var(--card-bg);border:1px solid var(--border);border-radius:18px;aspect-ratio:16/12;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font-size:48px}
+.map-placeholder p{font-size:14px;color:var(--muted)}
+.social-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.social-link{background:var(--card-bg);border:1px solid var(--border);width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;text-decoration:none;transition:all 0.2s}
+.social-link:hover{background:var(--lime);border-color:var(--lime);transform:translateY(-3px)}
+/* FOOTER */
+footer{background:var(--forest);border-top:1px solid var(--border);padding:60px 24px 30px}
+[data-theme="light"] footer{background:#E0EECC}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand .logo{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--lime);letter-spacing:2px;margin-bottom:12px}
+.footer-brand p{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:20px}
+.footer-col h4{font-weight:700;font-size:14px;margin-bottom:16px;letter-spacing:1px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col ul li a{color:var(--muted);text-decoration:none;font-size:14px;transition:color 0.2s}
+.footer-col ul li a:hover{color:var(--lime)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:gap;gap:16px}
+.footer-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:15px;color:var(--muted)}
+.footer-copy{font-size:13px;color:var(--muted)}
+/* MODAL */
+.modal{display:none;position:fixed;inset:0;z-index:200;align-items:center;justify-content:center;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);padding:24px}
+.modal.open{display:flex;animation:fadeIn 0.2s}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal-content{background:var(--card-bg);border:1px solid var(--border);border-radius:24px;max-width:600px;width:100%;max-height:85vh;overflow-y:auto;padding:32px;position:relative}
+.modal-close{position:absolute;top:16px;right:16px;background:var(--surface);border:none;color:var(--text);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:background 0.2s}
+.modal-close:hover{background:var(--lime);color:var(--forest)}
+.modal-img{width:100%;border-radius:16px;margin-bottom:20px;max-height:280px;object-fit:cover}
+.modal-title{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:2px;margin-bottom:12px}
+.modal-meta{display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.modal-body p{color:var(--muted);font-size:15px;line-height:1.8}
+.modal-body h4{font-weight:700;margin:16px 0 8px;font-size:15px}
+.modal-body ul{color:var(--muted);font-size:14px;padding-left:18px;line-height:1.9}
+/* MOTIVATIONAL STRIP */
+.motive-strip{background:var(--bg3);border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;padding:18px 0;white-space:nowrap}
+.motive-inner{display:inline-flex;animation:marquee 30s linear infinite}
+.motive-inner span{padding:0 40px;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--lime);opacity:0.6}
+.motive-inner span.dot{color:var(--amber);opacity:1;padding:0 10px}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity 0.6s ease,transform 0.6s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-links{display:none;position:fixed;top:64px;left:0;right:0;background:var(--bg);padding:24px;flex-direction:column;border-bottom:1px solid var(--border);gap:16px}
+  .nav-links.open{display:flex}
+  .hamburger{display:flex}
+  .about-grid,.join-grid,.contact-grid,.footer-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-auto-rows:160px}
+  .gallery-item.wide{grid-column:span 2}
+  .form-row{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .about-values{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .gallery-grid{grid-template-columns:1fr;grid-auto-rows:220px}
+  .gallery-item.wide{grid-column:span 1}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">FIT TOGETHER</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#activities">Activities</a></li>
+    <li><a href="#exercises">Exercises</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeToggle" title="Toggle theme">🌙</button>
+    <a href="#join" class="nav-cta">Join Now</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-bg-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">India's Most Active Fitness Community</div>
+    <h1 class="hero-title">TRANSFORM<br>YOUR <span>LIFE</span><br>THROUGH</h1>
+    <h1 class="hero-title" style="color:var(--lime);margin-top:-8px">FITNESS & YOGA</h1>
+    <p class="hero-sub">Join our growing community and stay healthy, active, and motivated every day.</p>
+    <div class="hero-btns">
+      <a href="#join" class="btn-primary">Join Our Community</a>
+      <a href="#activities" class="btn-outline">View Daily Activities</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">2,400+</div><div class="label">Active Members</div></div>
+      <div class="hero-stat"><div class="num">350+</div><div class="label">Workouts Shared</div></div>
+      <div class="hero-stat"><div class="num">12+</div><div class="label">Expert Coaches</div></div>
+      <div class="hero-stat"><div class="num">98%</div><div class="label">Satisfaction</div></div>
+    </div>
+  </div>
+  <div class="scroll-hint"><div style="width:2px;height:40px;background:var(--lime);opacity:0.5;border-radius:2px"></div><span>SCROLL</span></div>
+</section>
+
+<!-- QUOTE BAR -->
+<div class="quote-bar">
+  <p>"The only bad workout is the one that didn't happen. Show up, sweat, and grow stronger every single day."</p>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img fade-up">
+        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80" alt="Community yoga session" loading="lazy">
+        <div class="about-img-overlay"></div>
+        <div class="about-badge">🌱 Est. 2021 · Lucknow</div>
+      </div>
+      <div class="about-text fade-up">
+        <div>
+          <div class="section-label">About Us</div>
+          <h2 class="section-title">WE ARE ONE<br>COMMUNITY</h2>
+          <div class="divider"></div>
+        </div>
+        <p>Our mission is to inspire people to live a healthy and disciplined life through exercise, yoga, and positive habits. We believe fitness is not a destination — it's a lifestyle that transforms the mind, body, and spirit.</p>
+        <p>From morning yoga sessions in the park to high-energy group workouts, we create an environment where everyone belongs — beginners and veterans alike. Together, we push further than we ever could alone.</p>
+        <div class="about-values">
+          <div class="value-card">
+            <div class="icon">🧘</div>
+            <h4>Mind & Body Balance</h4>
+            <p>Integrating yoga and meditation for holistic health</p>
+          </div>
+          <div class="value-card">
+            <div class="icon">🤝</div>
+            <h4>Community First</h4>
+            <p>Stronger together — accountability and support</p>
+          </div>
+          <div class="value-card">
+            <div class="icon">🔥</div>
+            <h4>Daily Consistency</h4>
+            <p>Small daily actions create extraordinary results</p>
+          </div>
+          <div class="value-card">
+            <div class="icon">🌟</div>
+            <h4>Expert Guidance</h4>
+            <p>Learn from certified trainers and yoga masters</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOTIVE STRIP -->
+<div class="motive-strip">
+  <div class="motive-inner">
+    <span>STAY STRONG</span><span class="dot">✦</span>
+    <span>BREATHE DEEP</span><span class="dot">✦</span>
+    <span>MOVE EVERY DAY</span><span class="dot">✦</span>
+    <span>SWEAT MORE WORRY LESS</span><span class="dot">✦</span>
+    <span>YOUR ONLY LIMIT IS YOU</span><span class="dot">✦</span>
+    <span>RISE AND GRIND</span><span class="dot">✦</span>
+    <span>YOGA IS THE JOURNEY</span><span class="dot">✦</span>
+    <span>STAY STRONG</span><span class="dot">✦</span>
+    <span>BREATHE DEEP</span><span class="dot">✦</span>
+    <span>MOVE EVERY DAY</span><span class="dot">✦</span>
+    <span>SWEAT MORE WORRY LESS</span><span class="dot">✦</span>
+    <span>YOUR ONLY LIMIT IS YOU</span><span class="dot">✦</span>
+    <span>RISE AND GRIND</span><span class="dot">✦</span>
+    <span>YOGA IS THE JOURNEY</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- DAILY ACTIVITIES -->
+<section class="activities-section" id="activities">
+  <div class="container">
+    <div class="section-label fade-up">Daily Activities</div>
+    <h2 class="section-title fade-up">WHAT WE DO<br>EVERY DAY</h2>
+    <p class="section-sub fade-up">Real activities from our real community. Upload your daily workout moments and inspire others.</p>
+    <div class="activity-filter fade-up">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="yoga">Yoga</button>
+      <button class="filter-btn" data-filter="cardio">Cardio</button>
+      <button class="filter-btn" data-filter="strength">Strength</button>
+      <button class="filter-btn" data-filter="group">Group</button>
+      <button class="filter-btn" data-filter="meditation">Meditation</button>
+    </div>
+    <div class="activity-grid" id="activityGrid">
+      <div class="activity-card fade-up" data-cat="yoga">
+        <img src="https://images.unsplash.com/photo-1588286840104-8957b019727f?w=600&q=80" alt="Yoga Practice" loading="lazy">
+        <div class="activity-card-overlay"><div class="activity-card-info"><h3>Morning Yoga</h3><p>6:00 AM · City Park</p></div></div>
+        <div class="activity-tag">YOGA</div>
+      </div>
+      <div class="activity-card fade-up" data-cat="cardio">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" alt="Running" loading="lazy">
+        <div class="activity-card-overlay"><div class="activity-card-info"><h3>5K Morning Run</h3><p>5:30 AM · Gomti Riverfront</p></div></div>
+        <div class="activity-tag">CARDIO</div>
+      </div>
+      <div class="activity-card fade-up" data-cat="strength">
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80" alt="Push-ups" loading="lazy">
+        <div class="activity-card-overlay"><div class="activity-card-info"><h3>Calisthenics</h3><p>Push-ups · Squats · Planks</p></div></div>
+        <div class="activity-tag">STRENGTH</div>
+      </div>
+      <div class="activity-card fade-up" data-cat="group">
+        <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80" alt="Group Workout" loading="lazy">
+        <div class="activity-card-overlay"><div class="activity-card-info"><h3>Group Bootcamp</h3><p>Sunday · 7:00 AM</p></div></div>
+        <div class="activity-tag">GROUP</div>
+      </div>
+      <div class="activity-card fade-up" data-cat="meditation">
+        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80" alt="Meditation" loading="lazy">
+        <div class="activity-card-overlay"><div class="activity-card-info"><h3>Guided Meditation</h3><p>Anulom Vilom · Kapalbhati</p></div></div>
+        <div class="activity-tag">MEDITATION</div>
+      </div>
+      <div class="activity-card fade-up" data-cat="cardio">
+        <img src="https://images.unsplash.com/photo-1538193782-9d5226b09a41?w=600&q=80" alt="Cycling" loading="lazy">
+        <div class="activity-card-overlay"><div class="activity-card-info"><h3>Cycling Club</h3><p>Saturdays · 20km Route</p></div></div>
+        <div class="activity-tag">CARDIO</div>
+      </div>
+    </div>
+    <!-- Upload Area -->
+    <div class="upload-area fade-up" onclick="document.getElementById('file-input').click()">
+      <div class="upload-icon">📸</div>
+      <h3>Share Your Workout Moment</h3>
+      <p>Upload photos or videos of your daily fitness activities to inspire the community</p>
+      <button class="btn-primary" style="pointer-events:none">Choose Photo / Video</button>
+      <input type="file" id="file-input" accept="image/*,video/*" multiple onchange="handleUpload(event)">
+      <div class="upload-preview" id="uploadPreview"></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXERCISES -->
+<section id="exercises">
+  <div class="container">
+    <div class="section-label fade-up">Exercise Library</div>
+    <h2 class="section-title fade-up">MASTER EVERY<br>MOVEMENT</h2>
+    <p class="section-sub fade-up">From calisthenics to ancient yoga asanas — complete guide for your fitness journey.</p>
+    <div class="exercise-grid" id="exerciseGrid">
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section" id="team">
+  <div class="container">
+    <div class="section-label fade-up">Leadership Team</div>
+    <h2 class="section-title fade-up">MEET THE MINDS<br>BEHIND THE MISSION</h2>
+    <p class="section-sub fade-up">Passionate fitness experts dedicated to your transformation.</p>
+    <div class="team-grid">
+      <div class="team-card fade-up">
+        <div class="team-img">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="Amit Chaurasiya" loading="lazy">
+          <div class="team-img-overlay"></div>
+        </div>
+        <div class="team-body">
+          <h3>Amit Chaurasiya</h3>
+          <div class="team-role">🌿 Founder & Head Trainer</div>
+          <p>"Helping people build healthy habits and achieve fitness goals through community support."</p>
+          <div class="team-social">
+            <a href="#" class="social-icon">📘</a>
+            <a href="#" class="social-icon">📸</a>
+            <a href="#" class="social-icon">💬</a>
+          </div>
+        </div>
+      </div>
+      <div class="team-card fade-up">
+        <div class="team-img">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80" alt="Sandeep Chaudhary" loading="lazy">
+          <div class="team-img-overlay"></div>
+        </div>
+        <div class="team-body">
+          <h3>Sandeep Chaudhary</h3>
+          <div class="team-role">🧘 Head Yoga Instructor</div>
+          <p>"Yoga is not about touching your toes. It's about what you learn on the way down."</p>
+          <div class="team-social">
+            <a href="#" class="social-icon">📘</a>
+            <a href="#" class="social-icon">📸</a>
+            <a href="#" class="social-icon">💬</a>
+          </div>
+        </div>
+      </div>
+      <div class="team-card fade-up">
+        <div class="team-img">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80" alt="Mikha Sharma" loading="lazy">
+          <div class="team-img-overlay"></div>
+        </div>
+        <div class="team-body">
+          <h3>Mikha Sharma</h3>
+          <div class="team-role">🏃 Running Coach</div>
+          <p>"Every run begins with a single step. I help you take that step and keep going."</p>
+          <div class="team-social">
+            <a href="#" class="social-icon">📘</a>
+            <a href="#" class="social-icon">📸</a>
+            <a href="#" class="social-icon">💬</a>
+          </div>
+        </div>
+      </div>
+      <div class="team-card fade-up">
+        <div class="team-img">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" alt="Neha Gupta" loading="lazy">
+          <div class="team-img-overlay"></div>
+        </div>
+        <div class="team-body">
+          <h3>Neha Gupta</h3>
+          <div class="team-role">🧠 Wellness & Nutrition</div>
+          <p>"Fueling your body right is 80% of the fitness battle. Let food be your medicine."</p>
+          <div class="team-social">
+            <a href="#" class="social-icon">📘</a>
+            <a href="#" class="social-icon">📸</a>
+            <a href="#" class="social-icon">💬</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUCCESS STORIES -->
+<section id="stories">
+  <div class="container">
+    <div class="section-label fade-up">Success Stories</div>
+    <h2 class="section-title fade-up">REAL PEOPLE,<br>REAL RESULTS</h2>
+    <p class="section-sub fade-up">Our community members have transformed their lives. You're next.</p>
+    <div class="stories-grid">
+      <div class="story-card fade-up">
+        <div class="story-before-after">
+          <img src="https://images.unsplash.com/photo-1611802986888-5ea19f22b0d6?w=400&q=80" alt="Before" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&q=80" alt="After" loading="lazy">
+        </div>
+        <div class="story-body">
+          <div class="story-label">SUCCESS STORY</div>
+          <h3>Suresh K., 34 · Lucknow</h3>
+          <p>"I lost 18 kg in 5 months with this community. The group accountability kept me going even on tough days. Forever grateful to Amit sir!"</p>
+          <span class="story-weight">🏆 Lost 18 kg in 5 months</span>
+        </div>
+      </div>
+      <div class="story-card fade-up">
+        <div class="story-before-after">
+          <img src="https://images.unsplash.com/photo-1595078475328-1ab05d0a6a0e?w=400&q=80" alt="Before" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1518310952931-b1de897abd40?w=400&q=80" alt="After" loading="lazy">
+        </div>
+        <div class="story-body">
+          <div class="story-label">SUCCESS STORY</div>
+          <h3>Anjali M., 28 · Kanpur</h3>
+          <p>"Yoga transformed not just my body but my entire mindset. I went from chronic back pain to running my first 5K. This community is life-changing!"</p>
+          <span class="story-weight">🧘 Chronic pain eliminated</span>
+        </div>
+      </div>
+      <div class="story-card fade-up">
+        <div class="story-before-after">
+          <img src="https://images.unsplash.com/photo-1530822847156-5df684ec5933?w=400&q=80" alt="Before" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=400&q=80" alt="After" loading="lazy">
+        </div>
+        <div class="story-body">
+          <div class="story-label">SUCCESS STORY</div>
+          <h3>Vikram S., 42 · Lucknow</h3>
+          <p>"At 42, I never thought I'd be this fit. The cycling club and morning yoga have given me energy I didn't have in my 30s. Join. Change. Live."</p>
+          <span class="story-weight">💪 Gained 8 kg muscle mass</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="events-section" id="events">
+  <div class="container">
+    <div class="section-label fade-up">Events & Challenges</div>
+    <h2 class="section-title fade-up">PUSH YOUR<br>LIMITS TOGETHER</h2>
+    <p class="section-sub fade-up">Join our challenges and events designed to motivate and transform.</p>
+    <div class="events-grid">
+      <div class="event-card fade-up">
+        <div class="event-img"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" alt="30 Day Challenge" loading="lazy"></div>
+        <div class="event-date-badge">JUL<br>1</div>
+        <div class="event-body">
+          <h3>30-Day Fitness Challenge</h3>
+          <p>Transform your body with daily progressive workouts. No equipment needed. Just commitment.</p>
+          <div class="event-meta">
+            <span>📅 July 1 – July 31</span>
+            <span>👥 342 joined</span>
+            <span>🆓 Free</span>
+          </div>
+          <a href="#join" class="event-cta">Register Now</a>
+        </div>
+      </div>
+      <div class="event-card fade-up">
+        <div class="event-img"><img src="https://images.unsplash.com/photo-1588286840104-8957b019727f?w=600&q=80" alt="Morning Yoga" loading="lazy"></div>
+        <div class="event-date-badge">EVERY<br>DAY</div>
+        <div class="event-body">
+          <h3>Morning Yoga Sessions</h3>
+          <p>Start every day with mindful movement. Led by Priya ji, open to all skill levels.</p>
+          <div class="event-meta">
+            <span>⏰ 6:00 AM Daily</span>
+            <span>📍 Shiv Mandir, Harpur Mahnth, Maharajganj</span>
+            <span>🆓 Free</span>
+          </div>
+          <a href="#join" class="event-cta">Join Session</a>
+        </div>
+      </div>
+      <div class="event-card fade-up">
+        <div class="event-img"><img src="https://images.unsplash.com/photo-1538193782-9d5226b09a41?w=600&q=80" alt="Running Club" loading="lazy"></div>
+        <div class="event-date-badge">EVERY<br>SAT</div>
+        <div class="event-body">
+          <h3>Weekend Running Club</h3>
+          <p>Saturday morning 5K/10K runs through the city's green corridors. All paces welcome.</p>
+          <div class="event-meta">
+            <span>🏃 5:30 AM Saturdays</span>
+            <span>👥 100 runners</span>
+            <span>🆓 Free</span>
+          </div>
+          <a href="#join" class="event-cta">Join Club</a>
+        </div>
+      </div>
+      <div class="event-card fade-up">
+        <div class="event-img"><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80" alt="Meditation Workshop" loading="lazy"></div>
+        <div class="event-date-badge">AUG<br>15</div>
+        <div class="event-body">
+          <h3>Meditation Workshop</h3>
+          <p>A full-day immersive meditation and pranayama experience with certified instructors.</p>
+          <div class="event-meta">
+            <span>📅 Aug 15</span>
+            <span>⏱ 8 Hours</span>
+            <span>💰 ₹299</span>
+          </div>
+          <a href="#join" class="event-cta">Book Spot</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <div class="section-label fade-up">Gallery</div>
+    <h2 class="section-title fade-up">OUR COMMUNITY<br>IN ACTION</h2>
+    <div class="gallery-grid fade-up">
+      <div class="gallery-item wide tall">
+        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80" alt="Yoga group" loading="lazy">
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" alt="Running" loading="lazy">
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80" alt="Gym" loading="lazy">
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80" alt="Group Workout" loading="lazy">
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1538193782-9d5226b09a41?w=600&q=80" alt="Cycling" loading="lazy">
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-item wide">
+        <img src="https://images.unsplash.com/photo-1588286840104-8957b019727f?w=800&q=80" alt="Yoga pose" loading="lazy">
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80" alt="Meditation" loading="lazy">
+        <div class="gallery-overlay"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section class="join-section" id="join">
+  <div class="container">
+    <div class="section-label fade-up" style="color:var(--lime)">Join Us</div>
+    <h2 class="section-title fade-up" style="color:#fff">START YOUR<br>JOURNEY TODAY</h2>
+    <p class="section-sub fade-up">Take the first step. Your future fit self will thank you.</p>
+    <div class="join-grid">
+      <div>
+        <form class="join-form" onsubmit="handleJoin(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" placeholder="Amit Kumar" required>
+            </div>
+            <div class="form-group">
+              <label>Age</label>
+              <input type="number" placeholder="25" min="10" max="80">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Phone</label>
+              <input type="tel" placeholder="+91 9315738722" required>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" placeholder="you@email.com">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Location / Mohalla</label>
+            <input type="text" placeholder="Shiv Mandir, Harpur Mahnth, Maharajganj">
+          </div>
+          <div class="form-group">
+            <label>Fitness Goal</label>
+            <select>
+              <option>Weight Loss</option>
+              <option>Muscle Gain</option>
+              <option>Yoga & Flexibility</option>
+              <option>Running / Endurance</option>
+              <option>Overall Wellness</option>
+              <option>Meditation & Mental Health</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Current Fitness Level</label>
+            <select>
+              <option>Beginner – Just Starting Out</option>
+              <option>Intermediate – Some Experience</option>
+              <option>Advanced – Regular Athlete</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Anything else? (Optional)</label>
+            <textarea placeholder="Tell us about your fitness story or any health considerations..."></textarea>
+          </div>
+          <button type="submit" class="join-submit">🌿 Join Fit Together Community</button>
+        </form>
+        <div id="joinSuccess" style="display:none;text-align:center;padding:32px;background:rgba(200,241,53,0.1);border:1px solid var(--lime);border-radius:16px;margin-top:16px">
+          <div style="font-size:48px;margin-bottom:12px">🎉</div>
+          <h3 style="color:var(--lime);margin-bottom:8px">Welcome to the Community!</h3>
+          <p style="color:var(--muted)">We'll reach out to you via WhatsApp within 24 hours.</p>
+        </div>
+      </div>
+      <div class="join-links">
+        <a href="https://wa.me/919876543210" class="join-link-card" target="_blank">
+          <div class="join-link-icon whatsapp">💬</div>
+          <div class="join-link-text">
+            <h3>WhatsApp Group</h3>
+            <p>Join 2,400+ members on our active community group</p>
+          </div>
+        </a>
+        <a href="https://instagram.com/fittogethercommunity" class="join-link-card" target="_blank">
+          <div class="join-link-icon instagram">📸</div>
+          <div class="join-link-text">
+            <h3>Follow on Instagram</h3>
+            <p>Daily fitness reels, stories, and transformation posts</p>
+          </div>
+        </a>
+        <div class="join-benefits">
+          <h3>✅ What You Get as a Member</h3>
+          <div class="benefit-item">Daily workout plans delivered to WhatsApp</div>
+          <div class="benefit-item">Access to all morning yoga sessions (free)</div>
+          <div class="benefit-item">Weekly expert nutrition tips</div>
+          <div class="benefit-item">Accountability partner matching</div>
+          <div class="benefit-item">Priority registration for events</div>
+          <div class="benefit-item">Monthly fitness assessment & progress tracking</div>
+          <div class="benefit-item">Exclusive member challenges & prizes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="section-label fade-up">Contact Us</div>
+    <h2 class="section-title fade-up">GET IN<br>TOUCH</h2>
+    <div class="contact-grid">
+      <div class="contact-items">
+        <div class="contact-item fade-up">
+          <div class="contact-icon">📧</div>
+          <div class="contact-info">
+            <h4>Email</h4>
+            <a href="mailto:hello@fittogether.in">hello@fittogether.in</a>
+          </div>
+        </div>
+        <div class="contact-item fade-up">
+          <div class="contact-icon">📞</div>
+          <div class="contact-info">
+            <h4>Phone / WhatsApp</h4>
+            <a href="tel:+919315738722">+91 9315738722</a>
+          </div>
+        </div>
+        <div class="contact-item fade-up">
+          <div class="contact-icon">📍</div>
+          <div class="contact-info">
+            <h4>Location</h4>
+            <p>Shiv Mandir, Harpur Mahnth, Maharajganj, Uttar Pradesh – 273151</p>
+          </div>
+        </div>
+        <div class="contact-item fade-up">
+          <div class="contact-icon">⏰</div>
+          <div class="contact-info">
+            <h4>Activity Hours</h4>
+            <p>Morning: 5:30 AM – 8:00 AM<br>Evening: 5:30 PM – 7:30 PM</p>
+          </div>
+        </div>
+        <div class="social-links fade-up">
+          <a href="#" class="social-link" title="Facebook">📘</a>
+          <a href="#" class="social-link" title="Instagram">📸</a>
+          <a href="#" class="social-link" title="YouTube">▶️</a>
+          <a href="#" class="social-link" title="WhatsApp">💬</a>
+          <a href="#" class="social-link" title="Twitter">🐦</a>
+        </div>
+      </div>
+      <div class="fade-up">
+        <div class="map-placeholder">
+          🗺️
+          <p>Shiv Mandir, Harpur Mahnth <br>Maharajganj, UP</p>
+          <a href="https://maps.google.com" target="_blank" class="btn-outline" style="margin-top:8px;font-size:13px;padding:10px 22px">Open in Maps</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">FIT TOGETHER</div>
+        <p>India's most welcoming fitness community. We believe every person deserves to feel strong, healthy, and alive. Join us and discover what your body is truly capable of.</p>
+        <div class="social-links">
+          <a href="#" class="social-link">📘</a>
+          <a href="#" class="social-link">📸</a>
+          <a href="#" class="social-link">▶️</a>
+          <a href="#" class="social-link">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#activities">Daily Activities</a></li>
+          <li><a href="#exercises">Exercise Library</a></li>
+          <li><a href="#team">Our Team</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Activities</h4>
+        <ul>
+          <li><a href="#">Morning Yoga</a></li>
+          <li><a href="#">Running Club</a></li>
+          <li><a href="#">Cycling Group</a></li>
+          <li><a href="#">Group Workouts</a></li>
+          <li><a href="#">Meditation</a></li>
+          <li><a href="#">30-Day Challenge</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@fittogether.in">hello@fittogether.in</a></li>
+          <li><a href="tel:+919315738722">+91 9315738722</a></li>
+          <li><a href="#">Shiv Mandir ,  Harpur Mahanth</a></li>
+          <li><a href="#">Maharajganj, UP 273151</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-quote">"Your body can achieve it. It's your mind you have to convince."</p>
+      <p class="footer-copy">© 2026 Fit Together Community. Made with 💚 in Maharajganj UP</p>
+    </div>
+  </div>
+</footer>
+
+<!-- EXERCISE MODAL -->
+<div class="modal" id="exerciseModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <img id="modal-img" src="" alt="" class="modal-img">
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-meta" id="modal-meta"></div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+// THEME TOGGLE
+const themeBtn = document.getElementById('themeToggle');
+let isDark = true;
+themeBtn.addEventListener('click', () => {
+  isDark = !isDark;
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  themeBtn.textContent = isDark ? '🌙' : '☀️';
+});
+
+// HAMBURGER
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+// SCROLL ANIMATIONS
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ACTIVITY FILTER
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.activity-card').forEach(card => {
+      card.style.display = (filter === 'all' || card.dataset.cat === filter) ? 'block' : 'none';
+    });
+  });
+});
+
+// FILE UPLOAD
+function handleUpload(e) {
+  const files = Array.from(e.target.files);
+  const preview = document.getElementById('uploadPreview');
+  files.forEach(file => {
+    const item = document.createElement('div');
+    item.className = 'preview-item';
+    const url = URL.createObjectURL(file);
+    if (file.type.startsWith('video')) {
+      item.innerHTML = `<video src="${url}" muted loop autoplay></video>`;
+    } else {
+      item.innerHTML = `<img src="${url}" alt="upload">`;
+    }
+    preview.appendChild(item);
+  });
+}
+
+// JOIN FORM
+function handleJoin(e) {
+  e.preventDefault();
+  e.target.style.display = 'none';
+  document.getElementById('joinSuccess').style.display = 'block';
+}
+
+// EXERCISES DATA
+const exercises = [
+  { name:'Push-ups', cat:'Strength', img:'https://images.unsplash.com/photo-1598971457999-ca4ef48a9a71?w=600&q=80', diff:'Easy', reps:'3×15', benefits:'Builds chest, shoulders, and triceps. Improves core stability and upper body endurance.', detail:'Start in plank position, hands shoulder-width apart. Lower chest to ground keeping body straight. Push back up.',tips:['Keep core tight','Elbows at 45°','Full range of motion'] },
+  { name:'Squats', cat:'Strength', img:'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80', diff:'Easy', reps:'4×20', benefits:'Strengthens legs, glutes, and core. Improves balance and flexibility.', detail:'Stand feet shoulder-width. Lower as if sitting on chair. Keep chest up, knees behind toes.',tips:['Chest tall','Weight in heels','Knees track toes'] },
+  { name:'Pull-ups', cat:'Strength', img:'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80', diff:'Hard', reps:'3×8', benefits:'Best back and bicep builder. Improves grip strength and functional pulling power.', detail:'Hang from bar with overhand grip. Pull chin above bar. Lower with control.',tips:['Dead hang start','Squeeze at top','No kipping'] },
+  { name:'Plank', cat:'Core', img:'https://images.unsplash.com/photo-1598971457999-ca4ef48a9a71?w=600&q=80', diff:'Easy', reps:'3×60s', benefits:'Builds deep core stability, prevents back pain, improves posture.',detail:'Forearms on floor, body in straight line. Hold without letting hips sag.',tips:['Breathe normally','Engage glutes','Eyes on floor'] },
+  { name:'Lunges', cat:'Strength', img:'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80', diff:'Easy', reps:'3×12 each', benefits:'Targets quads, glutes, and hamstrings. Improves balance and unilateral strength.',detail:'Step forward, lower back knee toward ground. Push back to start.',tips:['Torso upright','Front knee over ankle','Controlled descent'] },
+  { name:'Burpees', cat:'Cardio', img:'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80', diff:'Hard', reps:'3×10', benefits:'Full body cardio blast. Burns maximum calories and builds explosive power.',detail:'Stand → squat → jump feet back → push-up → jump feet forward → jump up with arms overhead.',tips:['Smooth transitions','Land softly','Scale to ability'] },
+  { name:'Jumping Jacks', cat:'Cardio', img:'https://images.unsplash.com/photo-1538193782-9d5226b09a41?w=600&q=80', diff:'Easy', reps:'3×30', benefits:'Excellent warm-up and cardio exercise. Improves coordination and cardiovascular health.',detail:'Start standing, jump spreading legs and raising arms overhead simultaneously.',tips:['Soft knees on landing','Arms fully extend','Maintain rhythm'] },
+  { name:'Mountain Climbers', cat:'Core', img:'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80', diff:'Medium', reps:'3×30s', benefits:'Dynamic core and cardio exercise. Builds endurance and strengthens entire midsection.',detail:'High plank position. Alternate driving knees toward chest rapidly.',tips:['Hips level','Fast but controlled','Breathe rhythmically'] },
+  { name:'Running', cat:'Cardio', img:'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80', diff:'Medium', reps:'5–10 km', benefits:'Improves cardiovascular health, builds leg strength, reduces stress, and boosts mood.',detail:'Start slow. Build distance gradually. Focus on consistent pace.',tips:['Warm up first','Land midfoot','Stay hydrated'] },
+  { name:'Cycling', cat:'Cardio', img:'https://images.unsplash.com/photo-1538193782-9d5226b09a41?w=600&q=80', diff:'Medium', reps:'30–60 min', benefits:'Low-impact cardio. Strengthens legs and knees. Great for fat burning.',detail:'Adjust seat height. Maintain 80-90 RPM cadence. Vary terrain.',tips:['Proper bike fit','Helmet always','Vary intensity'] },
+  { name:'Surya Namaskar', cat:'Yoga', img:'https://images.unsplash.com/photo-1588286840104-8957b019727f?w=600&q=80', diff:'Medium', reps:'5–12 cycles', benefits:'Complete yoga sequence. Stretches entire body, improves flexibility, and calms the mind.',detail:'12-step flowing sequence beginning and ending in Pranamasana (prayer pose).',tips:['Sync with breath','Morning on empty stomach','Build gradually'] },
+  { name:'Tadasana', cat:'Yoga', img:'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80', diff:'Easy', reps:'Hold 30s × 5', benefits:'Mountain Pose. Improves posture, strengthens legs, and develops body awareness.',detail:'Stand tall, feet together. Weight evenly distributed. Arms at sides, palms forward.',tips:['Root through feet','Lengthen spine','Relax shoulders'] },
+  { name:'Bhujangasana', cat:'Yoga', img:'https://images.unsplash.com/photo-1588286840104-8957b019727f?w=600&q=80', diff:'Easy', reps:'Hold 20s × 5', benefits:'Cobra Pose. Strengthens spine, opens chest, relieves back pain.',detail:'Lie prone. Hands under shoulders. Gently lift chest using back muscles.',tips:['Elbows slightly bent','Pubic bone down','Breathe into chest'] },
+  { name:'Vrikshasana', cat:'Yoga', img:'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=80', diff:'Medium', reps:'Hold 30s each side', benefits:'Tree Pose. Develops balance, concentration, and strengthens legs and hips.',detail:'Stand on one leg. Place other foot on inner thigh. Raise arms overhead in namaste.',tips:['Focus point on wall','Engage standing leg','No holding breath'] },
+  { name:'Anulom Vilom', cat:'Pranayama', img:'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80', diff:'Easy', reps:'5–15 minutes', benefits:'Alternate nostril breathing. Balances nervous system, reduces anxiety, improves focus.',detail:'Right thumb closes right nostril, breathe left. Switch. Exhale right. Repeat.',tips:['Sit comfortably','4:4 count initially','Eyes closed'] },
+  { name:'Kapalbhati', cat:'Pranayama', img:'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80', diff:'Medium', reps:'3 rounds × 50 breaths', benefits:'Skull-shining breath. Detoxifies lungs, boosts metabolism, and energizes mind.',detail:'Sit tall. Rapid forceful exhales through nose. Passive inhales. Belly pumping.',tips:['Morning on empty stomach','Avoid with high BP','Start with 20/round'] },
+];
+
+function renderExercises() {
+  const grid = document.getElementById('exerciseGrid');
+  grid.innerHTML = exercises.map((ex, i) => `
+    <div class="exercise-card fade-up" onclick="openModal(${i})">
+      <div class="exercise-img">
+        <img src="${ex.img}" alt="${ex.name}" loading="lazy">
+        <div class="exercise-category">${ex.cat}</div>
+      </div>
+      <div class="exercise-body">
+        <h3>${ex.name}</h3>
+        <div class="exercise-meta">
+          <span class="meta-tag ${ex.diff.toLowerCase()}">${ex.diff}</span>
+          <span class="meta-tag reps">${ex.reps}</span>
+        </div>
+        <p class="exercise-benefits">${ex.benefits}</p>
+      </div>
+    </div>
+  `).join('');
+  document.querySelectorAll('.exercise-card').forEach(el => observer.observe(el));
+}
+renderExercises();
+
+function openModal(i) {
+  const ex = exercises[i];
+  document.getElementById('modal-img').src = ex.img;
+  document.getElementById('modal-title').textContent = ex.name;
+  document.getElementById('modal-meta').innerHTML = `
+    <span class="meta-tag ${ex.diff.toLowerCase()}">${ex.diff}</span>
+    <span class="meta-tag reps">📊 ${ex.reps}</span>
+    <span class="meta-tag" style="background:rgba(100,150,255,0.1);color:#8BB4FF">${ex.cat}</span>
+  `;
+  document.getElementById('modal-body').innerHTML = `
+    <p>${ex.benefits}</p>
+    <h4>How to do it</h4>
+    <p>${ex.detail}</p>
+    <h4>Pro Tips</h4>
+    <ul>${ex.tips.map(t => `<li>${t}</li>`).join('')}</ul>
+  `;
+  document.getElementById('exerciseModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('exerciseModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('exerciseModal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeModal();
+});
+
+// NAVBAR SCROLL
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').style.background = scrollY > 50
+    ? (isDark ? 'rgba(13,26,8,0.98)' : 'rgba(244,250,232,0.98)')
+    : (isDark ? 'rgba(13,26,8,0.85)' : 'rgba(244,250,232,0.9)');
+});
+</script>
+</body>
+</html>
